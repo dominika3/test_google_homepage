@@ -13,11 +13,9 @@ class GoogleHomepage(unittest.TestCase):
         self.driver = webdriver.Chrome(service=serv)
         self.driver.get("https://google.com")
 
-
-
-    # def test_search_title(self):
-    #     main_page = page.MainPage(self.driver)
-    #     assert main_page.is_title_google()
+    def test_page_title(self):
+        main_page = page.MainPage(self.driver)
+        assert main_page.is_title_google()
 
     def test_site_search(self):
         main_page = page.MainPage(self.driver)
