@@ -26,6 +26,14 @@ class GoogleHomepage(unittest.TestCase):
         main_page = page.MainPage(self.driver)
         assert main_page.is_tooltip_correct()
 
+    def test_google_image_displayed(self):
+        main_page = page.MainPage(self.driver)
+        assert main_page.is_image_displayed()
+
+    def test_padding_around_search_bar(self):
+        main_page = page.MainPage(self.driver)
+        assert main_page.is_padding_size_correct()
+
     def test_site_search(self):
         main_page = page.MainPage(self.driver)
         assert main_page.is_site_search_working()

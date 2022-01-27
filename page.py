@@ -68,6 +68,23 @@ class MainPage(BasePage):
             .text
         return tooltip in expected_tooltip
 
+    def is_image_displayed(self):
+        self.adjust_cookies()
+        google_image = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[2]/div/img')))
+        return google_image.is_displayed()
+
+    def is_padding_size_correct(self):
+        upper_pad = '5px'
+        right_pad = '8px'
+        bottom_pad = '0px'
+        left_pad = '14px'
+        search_bar_expected_padding = [upper_pad, right_pad, bottom_pad, left_pad]
+
+        self.adjust_cookies()
+        search_bar_actual_padding = (self.driver.find_element(By.XPATH, '/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div').value_of_css_property("padding")).split()
+
+        return search_bar_expected_padding == search_bar_actual_padding
+
     def is_site_search_working(self):
 
         self.adjust_cookies()
