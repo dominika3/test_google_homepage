@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 
 
 class MainPageLocators(object):
-    SEARCH_ELEMENT = (By.ID, 'q')
+    SEARCH_BOX_ELEMENT = (By.NAME, 'q')
 
 
 class SearchPageLocators(object):
