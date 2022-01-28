@@ -2,9 +2,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 import unittest
 import page
-import locator
-from selenium.webdriver.common.by import By
-
 
 class GoogleHomepage(unittest.TestCase):
 
@@ -30,9 +27,17 @@ class GoogleHomepage(unittest.TestCase):
         main_page = page.MainPage(self.driver)
         assert main_page.is_image_displayed()
 
+    def test_button_displayed_if_window_resized(self):
+        main_page = page.MainPage(self.driver)
+        assert main_page.is_button_displayed_when_window_resized()
+
     def test_padding_around_search_bar(self):
         main_page = page.MainPage(self.driver)
         assert main_page.is_padding_size_correct()
+
+    def test_filetype_search(self):
+        main_page = page.MainPage(self.driver)
+        assert main_page.is_searched_filetype_correct()
 
     def test_site_search(self):
         main_page = page.MainPage(self.driver)
@@ -40,7 +45,6 @@ class GoogleHomepage(unittest.TestCase):
 
     def tearDown(self):
         self.driver.quit()
-
 
 
 if __name__ == "__main__":
