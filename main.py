@@ -3,11 +3,12 @@ from selenium.webdriver.chrome.service import Service
 import unittest
 import page
 
+
 class GoogleHomepage(unittest.TestCase):
 
     def setUp(self):
-        PATH = "C:\Program Files (x86)\chromedriver.exe"
-        serv = Service(PATH)
+        webdriver_path = "C:\\Program Files (x86)\\chromedriver.exe"
+        serv = Service(webdriver_path)
         self.driver = webdriver.Chrome(service=serv)
         self.driver.get("https://google.com")
 
@@ -25,7 +26,7 @@ class GoogleHomepage(unittest.TestCase):
 
     def test_google_image_displayed(self):
         main_page = page.MainPage(self.driver)
-        assert main_page.is_image_displayed()
+        assert main_page.is_google_image_displayed()
 
     def test_button_displayed_if_window_resized(self):
         main_page = page.MainPage(self.driver)
@@ -36,12 +37,12 @@ class GoogleHomepage(unittest.TestCase):
         assert main_page.is_padding_size_correct()
 
     def test_filetype_search(self):
-        main_page = page.MainPage(self.driver)
-        assert main_page.is_searched_filetype_correct()
+        search_page = page.SearchPage(self.driver)
+        assert search_page.is_searched_filetype_correct()
 
     def test_site_search(self):
-        main_page = page.MainPage(self.driver)
-        assert main_page.is_site_search_working()
+        search_page = page.SearchPage(self.driver)
+        assert search_page.is_site_search_working()
 
     def tearDown(self):
         self.driver.quit()
@@ -49,4 +50,3 @@ class GoogleHomepage(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
